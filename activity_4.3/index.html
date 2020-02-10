@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  
+        
+    </head>
+    <body>
+        <div class="card template" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+        
+        <script>    
+            let apiEndpoint = "https://data.cityofchicago.org/resource/xzkq-xp2w.json?$LIMIT=100";
+            fetch(apiEndpoint)
+            .then(response => {return response.json()})
+            .then(json => {
+                for( var prop in json ){
+                    var c = document.querySelector('div.template').cloneNode(true)
+                    c.className = "card";
+                    
+                    c.querySelector(".card-title").innerHTML = json[prop].name;
+                    c.querySelector(".card-subtitle").innerHTML = json[prop].department;
+                    c.querySelector(".card-text").innerHTML = json[prop].annual_salary;
+                    
+                    document.body.appendChild(c);
+                    console.log(json[prop])
+//                     var newP = document.createElement("p");
+//                     newP.innerHTML = json[prop].name + ". \r Department:  " + json[prop].department + " \r";
+//                     document.body.appendChild(newP);
+                }
+                document.querySelector('div.template').remove("template")
+            })
+            .catch(err => alert(err))
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
