@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>homework_6.3</title>
+</head>
+
+<body>
+    <canvas id="canvas-demo" width="400" height="400">
+        This will be displayed if your browser doesn't
+        support the canvas element. The closing tag is
+        necessary.
+    </canvas>
+    <script>
+        let demoCanvas = document.getElementById("canvas-demo").getContext("2d");
+        document.body.style.backgroundColor = "lightSalmon";
+        window.onload = function() {
+            firstName();
+            demoCanvas.lineWidth = 5;
+            demoCanvas.strokeStyle = 'mediumOrchid';
+            demoCanvas.stroke();
+            simpleShape();
+            
+        }
+        
+        function firstName() {
+            demoCanvas.beginPath();
+            demoCanvas.moveTo(10, 10);// start at (10,10)
+            demoCanvas.lineTo(130, 10);
+            demoCanvas.moveTo(70, 10);
+            demoCanvas.lineTo(70, 150);
+            demoCanvas.lineTo(10,150);
+//             demoCanvas.closePath();
+        }
+        
+        function simpleShape(){
+            demoCanvas.beginPath();
+            demoCanvas.lineWidth = 20;
+            demoCanvas.moveTo(200,200);
+            demoCanvas.lineTo(250, 250);
+            demoCanvas.lineTo(210, 250);
+            demoCanvas.fillStyle = "blue";
+            demoCanvas.fill();
+            demoCanvas.closePath();
+        }
+    </script>
+</body>
+
+</html>

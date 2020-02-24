@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Activity 5.2</title>
+  </head>
+  <body>
+      <h1>
+      </h1>
+      <script>
+          let apiEndpoint = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Chicago&api-key=l4TaX4wafpJ0237rMRRx3MSEFSoeWfAF";
+          fetch(apiEndpoint)
+          .then(response => {return response.json()})
+          .then(json => {
+              console.log(json);
+              console.log(json.response.docs[0])
+              
+              for(let article in json.response.docs){
+                  let currentArt = json.response.docs[article]
+
+                  let headline = document.createElement("h2");
+                  headline.textContent = currentArt.headline.main;
+                  document.body.appendChild(headline)
+                  
+                  let ab = document.createElement("p");
+                  ab.textContent = currentArt.abstract;
+                  document.body.appendChild(ab)
+                  
+                  document.body.appendChild(document.createElement("br"))
+              }
+          })
+      </script>
+  </body>
+</html>
